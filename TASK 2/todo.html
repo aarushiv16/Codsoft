@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>ToDo List</title>
+</head>
+<body>
+    <div id="taskList" class="app-container">
+        <h1 class="app-header">TO DO LIST</h1>
+        <div class="add-task">
+            <input type="text" autocomplete="off" placeholder="Add New Task" v-model="newTask" @keyup.enter="newItem" class="task-input">
+            <input type="button" value="" class="submit-task" @click="newItem">
+        </div>
+        <ul class="task-list">
+            <li class="task-list-item" v-for="(task, index) in tasks" :key="index">
+                <label class="task-list-item-label">
+                    <input type="checkbox" v-model="task.done">
+                    <span :class="{ 'completed-task': task.done }">{{ task.name }}</span>
+                </label>
+                <span @click="delItem(index)" class="delete-btn" title="Delete Task"></span>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="todo.js"></script>
+</body>
+</html>
